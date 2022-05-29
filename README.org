@@ -1,0 +1,22 @@
+This is a serias k8s script to help users to use kubectl conveniently and quickly .
+
+* k8s_pod.sh
+
+This script can accept 3 parameters:
+1. *namespace keyword* : quickly match namespace with keyword.
+2. *pod keyword* : quickly match pods in last match namespace.
+3. *pod index* : if last keyword match more than one pods, you can indicate using which pod by index. Index begin with 1. 
+
+** example
+*** list all namespace
+
+[[file:images/2022-05-29_16-44-42_screenshot.png]]
+
+*** list all nodes in a match namespace
+
+[[file:images/2022-05-29_16-45-49_screenshot.png]]
+
+*** exec into a match node
+
+
+[[file:images/2022-05-29_16-50-00_screenshot.png]]

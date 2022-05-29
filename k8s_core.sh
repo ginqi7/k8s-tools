@@ -67,40 +67,46 @@ function k8s_action() {
     # $2: {namespace} namespace 的匹配关键字，可以不填；
     # $3: {item} item 的匹配关键字，可以不填；
     if [[ "${action}" == "exec" ]]; then
-	echo "command:"
-	echo "kubectl exec ${item} -n ${namespace} -it -- bash"
-	echo ""
-	kubectl exec "${item}" -n "${namespace}" -it -- bash
-	exit
+        echo "command:"
+        echo "kubectl exec ${item} -n ${namespace} -it -- bash"
+        echo ""
+        kubectl exec "${item}" -n "${namespace}" -it -- bash
+        exit
     fi
 
     if [[ "${action}" == "restart" ]]; then
-	echo "command:"
-	echo "kubectl rollout restart ${type} ${item} -n ${namespace}"
-	echo ""
-	kubectl rollout restart "${type}" "${item}" -n "${namespace}"
-	echo "kubectl rollout status ${type} ${item} -n ${namespace}"
-	echo ""
-	kubectl rollout status "${type}" "${item}" -n "${namespace}"
-	exit
+        echo "command:"
+        echo "kubectl rollout restart ${type} ${item} -n ${namespace}"
+        echo ""
+        kubectl rollout restart "${type}" "${item}" -n "${namespace}"
+        echo "kubectl rollout status ${type} ${item} -n ${namespace}"
+        echo ""
+        kubectl rollout status "${type}" "${item}" -n "${namespace}"
+        exit
     fi
 
     if [[ "${action}" == "debug" ]]; then
-	echo "command:"
-	echo "kubectl -n ${namespace} port-forward ${item} 8000:8000"
-	echo ""
-	kubectl -n "${namespace}" port-forward "${item}" 8000:8000
-	exit
+        echo "command:"
+        echo "kubectl -n ${namespace} port-forward ${item} 8000:8000"
+        echo ""
+        kubectl -n "${namespace}" port-forward "${item}" 8000:8000
+        exit
     fi
     
     if [[ "${action}" == "get" ]]; then
-	echo "command:"
-	echo "kubectl get ${type} ${item} -o yaml -n ${namespace}"
-	echo ""
-	kubectl get "${type}" "${item}" -o yaml -n "${namespace}"
-	exit
+        echo "command:"
+        echo "kubectl get ${type} ${item} -o yaml -n ${namespace}"
+        echo ""
+        kubectl get "${type}" "${item}" -o yaml -n "${namespace}"
+        exit
     fi
 
-
+    if [[ "${action}" == "edit" ]]; then
+        echo "command:"
+        echo "kubectl edit ${type} ${item} -o yaml -n ${namespace}"
+        echo ""
+        kubectl edit "${type}" "${item}" -o yaml -n "${namespace}"
+        exit
+    fi
 }
 
